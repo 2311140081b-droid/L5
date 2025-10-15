@@ -11,7 +11,11 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
-  get "application/L4"
+  resources :user, root 'users#index'
+  get 'users/new', to: 'users#new'
+  post 'users', to: 'users#create'
+  delete 'users/:id', to: 'users#destroy'
+  get "application/L5"
   get "top/main"
   post "top/login"
   root "top#main"
