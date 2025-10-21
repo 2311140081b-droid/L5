@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
-
+  root 'top#main'
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
   # Can be used by load balancers and uptime monitors to verify that the app is live.
   get "up" => "rails/health#show", as: :rails_health_check
@@ -11,15 +11,17 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
-  resources :user, root 'users#index'
-  get 'users/new', to: 'users#new'
-  post 'users', to: 'users#create'
-  delete 'users/:id', to: 'users#destroy'
+  resources :users
+  resources :tweets
+  resource :likes
+  delete "/likes/:id", to: "likes#destroy"
+  post "/likes/tweet_id", to:"likes#create"
   get "application/L5"
+  post 'users', to: 'users#create'
+  get "/tweets/new"
+  post "tweets", to: "tweets#create"
+  delete "tweets/:id", to: "tweets#destroy"
   get "top/main"
   post "top/login"
-  root "top#main"
   get "top/logout"
-  get "top/signin", to: "top#signin"
-  post "top/signin", to: "top#signin_submit"
 end

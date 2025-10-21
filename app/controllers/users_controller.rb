@@ -6,8 +6,10 @@ class UsersController < ApplicationController
     @user = User.new
   end
   def create
-    user = User.new(uid: params[:user][:uid], pass: params[:user][:pass], age: params[:user][:age])
-    user.save
+    if User.find_by(uid: params[:user][:uid])==nil
+      user = User.new(uid: params[:user][:uid], pass: params[:user][:pass])
+      user.save
+    end
     redirect_to '/'
   end
   def destroy

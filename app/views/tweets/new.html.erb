@@ -1,0 +1,6 @@
+<%= form_with model: @tweet do |f| %>
+  <%= f.label :message, 'メッセージ' %>
+  <%= f.text_field :message %>
+  <%= f.submit '投稿' %>
+<% end %>
+
