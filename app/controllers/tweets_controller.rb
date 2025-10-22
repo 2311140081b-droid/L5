@@ -6,7 +6,7 @@ class TweetsController < ApplicationController
     @tweet = Tweet.new
   end
   def create
-    Tweet.create(message: params[:tweet][:message], user_id: current_user.uid)
+    Tweet.create(message: params[:tweet][:message], user_id: current_user.id)
     redirect_to "/"
   end
   def destroy
