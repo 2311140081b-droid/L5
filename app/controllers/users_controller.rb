@@ -6,10 +6,10 @@ class UsersController < ApplicationController
     @user = User.new
   end
   def create
-    if User.find_by(uid: params[:user][:uid])==nil
-      user = User.new(uid: params[:user][:uid], pass: params[:user][:pass])
-      user.save
-    end
+      u = User.create(uid: params[:user][:uid], 
+          password: params[:user][:password],
+          password_confirmation: params[:user][:password_confirmation])
+    u.save
     redirect_to '/'
   end
   def destroy

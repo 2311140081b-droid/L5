@@ -1,15 +1,14 @@
 class TopController < ApplicationController
   def login
-    params_uid = params[:uid]
-    params_pass = params[:pass]
-    if User.find_by(uid: params_uid) &&User.find_by(pass: params_pass) then
+    user = User.find_by(uid: params[:uid])
+    if user and user.authenticate(params[:pass])
       session[:login_uid] = params[:uid]
       redirect_to top_main_path
     end
   end
 
   def main
-    if session[:login_uid] != nil
+    if current_user
       redirect_to tweets_path
     else
       render "login"
