@@ -28,13 +28,15 @@ production:
     <<: *default
     database: storage/production.sqlite3
   cache:
-    <<: *default
-    database: storage/production_cache.sqlite3
-    migrations_paths: db/cache_migrate
-  queue:
-    <<: *default
-    database: storage/production_queue.sqlite3
-    migrations_paths: db/queue_migrate
+    <<: *: &primary_production
+    database: storage/production_cache.sql
+    adapter: postgresql
+    encoding: unicode
+    pool: 5
+    database: mysite_gqt6
+    username: mysite_gqt6_user
+    password: <%= ENV['MYSITE_DATABASE_PASSWORD'] %>
+    url: <%= ENV['DATABASE_URL'] %>
   cable:
     <<: *default
     database: storage/production_cable.sqlite3
