@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get "profiles/show"
+  get "profiles/edit"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   root 'top#main'
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
@@ -14,6 +16,7 @@ Rails.application.routes.draw do
   resources :users
   resources :tweets
   resource :likes
+  resources :profiles, only:[ :show, :edit, :update]
   delete "/likes/:id", to: "likes#destroy"
   post "/likes/tweet_id", to:"likes#create"
   get "application/L5"

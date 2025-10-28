@@ -1,0 +1,7 @@
+<%= form_with model: @profile do |f| %>
+  <%= f.label :message, 'プロフィール' %>
+  <%= f.text_field :message %>
+  <%= f.submit '更新' %>
+<% end %>
+
+

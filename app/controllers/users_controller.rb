@@ -9,6 +9,9 @@ class UsersController < ApplicationController
       u = User.create(uid: params[:user][:uid], 
           password: params[:user][:password],
           password_confirmation: params[:user][:password_confirmation])
+      p=Profile.new(message:"")
+      p.user=u
+      p=save
     u.save
     redirect_to '/'
   end
