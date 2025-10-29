@@ -66,6 +66,6 @@ end
 gem "pg", "~> 1.5"
 
 group :development, :test do
-  gem "sqlite3", "~> 1.4"
+  gem "sqlite3", "~> 2.7"
 end
 
